@@ -8,9 +8,6 @@
 import SwiftUI
 
 struct QuestionBoxView: View {
-    private let persistenceController = PersistenceController.shared
-    @Binding var easyQuestions: [Question]
-    @Binding var hardQuestions: [Question]
     @Binding var isQuestionBoxViewTapped: Bool
     
     var body: some View {
@@ -20,9 +17,7 @@ struct QuestionBoxView: View {
                     .bold()
                     .foregroundColor(.textBlack)
                 Button {
-                    easyQuestions = persistenceController.filteredQuestion(which: .isNotChoosenAndEasy)
-                    hardQuestions = persistenceController.filteredQuestion(which: .isNotChoosenAndHard)
-                    self.isQuestionBoxViewTapped.toggle()
+                    isQuestionBoxViewTapped = true
                 } label: {
                     Image(systemName: "shippingbox.fill")
                         .resizable()
@@ -36,8 +31,8 @@ struct QuestionBoxView: View {
 
 struct QuestionBoxView_Previews: PreviewProvider {
     static var previews: some View {
-        let pc = PersistenceController.preview
+//        let pc = PersistenceController.preview
         
-        QuestionBoxView(easyQuestions: .constant(pc.easyQuestions), hardQuestions: .constant(pc.hardQuestions), isQuestionBoxViewTapped: .constant(false))
+        QuestionBoxView(isQuestionBoxViewTapped: .constant(false))
     }
 }

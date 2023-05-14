@@ -7,28 +7,40 @@
 
 import SwiftUI
 
-struct QuestionCardView: View {
-    @Binding var openDegree: Double
-    @Binding var closedDegree: Double
-    @Binding var easyQuestions: [Question]
-    @Binding var hardQuestions: [Question]
-    @Binding var selectedQuestion: Question?
+struct QuestionCardView: View, Animatable {
+    
+    init(isOpen: Bool) {
+        rotation = isOpen ? 0 : 180
+    }
+    
+    var animatableData: Double {
+        get { rotation }
+        set { rotation = newValue }
+    }
+    
+    var rotation: Double
     
     var body: some View {
         ZStack {
-            OpenCardView(degree: $openDegree, selectedQuestion: $selectedQuestion)
-                .zIndex(closedDegree == -90 ? 1 : 0)
-            ClosedCardListView(openDegree: $openDegree, closedDegree: $closedDegree, easyQuestions: $easyQuestions, hardQuestions: $hardQuestions, selectedQuestion: $selectedQuestion)
+            if rotation < 90 {
+                // 열려있을 때
+                OpenCardView()
+            } else {
+                // 닫혀있을 때
+                ClosedCardListView()
+                    .rotation3DEffect(Angle(degrees: rotation), axis: (0, 1, 0))
+            }
         }
+        .rotation3DEffect(Angle(degrees: rotation), axis: (0, 1, 0))
     }
 }
 
+
 struct QuestionCardView_Previews: PreviewProvider {
     static var previews: some View {
-        let pc = PersistenceController.preview
-        
-        QuestionCardView(openDegree: .constant(90), closedDegree: .constant(0), easyQuestions: .constant(pc.easyQuestions), hardQuestions: .constant(pc.hardQuestions), selectedQuestion: .constant(nil))
-        QuestionCardView(openDegree: .constant(90), closedDegree: .constant(0), easyQuestions: .constant(pc.easyQuestions), hardQuestions: .constant(pc.hardQuestions), selectedQuestion: .constant(pc.easyQuestions[0]))
+        let persistenceController = PersistenceController.preview
+        QuestionCardView(isOpen: true).environmentObject(persistenceController)
+        QuestionCardView(isOpen: false).environmentObject(persistenceController)
     }
 }
 

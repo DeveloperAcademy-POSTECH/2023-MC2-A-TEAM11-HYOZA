@@ -4,24 +4,14 @@
 //
 //  Created by 최명근 on 2023/05/07.
 //
-//
-//
-//  TodayView.swift
-//  Hyoza
-//
-//  Created by 최명근 on 2023/05/07.
 
 import SwiftUI
 import CoreData
 
 struct TodayView: View {
+    @EnvironmentObject var persistenceController: PersistenceController
     @State var isQuestionBoxViewTapped: Bool = false
-    @State var easyQuestions: [Question] = []
-    @State var hardQuestions: [Question] = []
     @State var isContinueIconSmall: Bool = false
-    @State var selectedQuestion: Question? = nil
-    @State var openDegree: Double = 90
-    @State var closedDegree: Double = 0
     
     @Binding var continuousDayCount: Int
     @Binding var continueText: String?
@@ -53,11 +43,11 @@ struct TodayView: View {
                     ZStack {
                         if isQuestionBoxViewTapped {
                             CardView(cornerRadius: 16, shadowColor: .black.opacity(0.05), shadowRadius: 12) {
-                                QuestionCardView(openDegree: $openDegree, closedDegree: $closedDegree, easyQuestions: $easyQuestions, hardQuestions: $hardQuestions, selectedQuestion: $selectedQuestion)
+                                QuestionCardView(isOpen: persistenceController.selectedQuestion != nil)
                             }
                         } else {
                             CardView(cornerRadius: 16, shadowColor: .black.opacity(0.05), shadowRadius: 12) {
-                                QuestionBoxView(easyQuestions: $easyQuestions, hardQuestions: $hardQuestions, isQuestionBoxViewTapped: $isQuestionBoxViewTapped)
+                                QuestionBoxView(isQuestionBoxViewTapped: $isQuestionBoxViewTapped)
                             }
                             .onTapGesture {
                                 self.isQuestionBoxViewTapped.toggle()
@@ -69,12 +59,8 @@ struct TodayView: View {
                 .padding(20)
             .background(Color.backGroundWhite.ignoresSafeArea())
             .onAppear() {
-                if let _selectedQuestion = PersistenceController.shared.selectedQuestion,
-                   selectedQuestion == nil {
-                    selectedQuestion = _selectedQuestion
-                    closedDegree = -90
-                    openDegree = 0
-                    isQuestionBoxViewTapped.toggle()
+                if persistenceController.selectedQuestion != nil {
+                    isQuestionBoxViewTapped = true
                 }
             }
         }
@@ -141,6 +127,7 @@ struct ContinueIconView: View {
 
 struct TodayView_Previews: PreviewProvider {
     static var previews: some View {
-        TodayView(continuousDayCount: .constant(0), continueText: .constant(nil), continueTextOpacity: .constant(1.0), tempTextStorage: .constant("작성을 시작해보세요!"), isContinueIconAnimating: .constant(false))
+        let persistenceController = PersistenceController.preview
+        TodayView(continuousDayCount: .constant(0), continueText: .constant(nil), continueTextOpacity: .constant(1.0), tempTextStorage: .constant("작성을 시작해보세요!"), isContinueIconAnimating: .constant(false)).environmentObject(persistenceController)
     }
 }

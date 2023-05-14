@@ -8,30 +8,26 @@
 import SwiftUI
 
 struct ClosedCardListView: View {
-    @Binding var openDegree: Double
-    @Binding var closedDegree: Double
-    @Binding var easyQuestions: [Question]
-    @Binding var hardQuestions: [Question]
-    @Binding var selectedQuestion: Question?
-    
+    @EnvironmentObject var persistenceController: PersistenceController
     var body: some View {
-            VStack(spacing: 20) {
-                Text("오늘의 질문을 골라주세요")
-                    .font(.title)
-                    .bold()
-                    .foregroundColor(.textBlack)
-                Text("질문은 하루에 하나만 열어볼 수 있어요!")
-                    .font(.subheadline)
-                    .bold()
-                    .foregroundColor(.textLightGray)
-                if easyQuestions.count >= 2 && hardQuestions.count >= 1 {
-                    closedCardView(question: easyQuestions[0], questionNumber: 1)
-                    closedCardView(question: hardQuestions[0], questionNumber: 2)
-                    closedCardView(question: easyQuestions[1], questionNumber: 3)
-                }
+        VStack(spacing: 20) {
+            Text("오늘의 질문을 골라주세요")
+                .font(.title)
+                .bold()
+                .foregroundColor(.textBlack)
+            Text("질문은 하루에 하나만 열어볼 수 있어요!")
+                .font(.subheadline)
+                .bold()
+                .foregroundColor(.textLightGray)
+            let easyQuestions = persistenceController.easyQuestions
+            let hardQuestions = persistenceController.hardQuestions
+            if easyQuestions.count >= 2 && hardQuestions.count >= 1 {
+                closedCardView(question: easyQuestions[0], questionNumber: 1)
+                closedCardView(question: hardQuestions[0], questionNumber: 2)
+                closedCardView(question: easyQuestions[1], questionNumber: 3)
             }
-            .padding(20)
-        .rotation3DEffect(Angle(degrees: closedDegree), axis: (0, 1, 0))
+        }
+        .padding(20)
     }
     
     private func closedCardView(question: Question, questionNumber: Int) -> some View {
@@ -58,15 +54,9 @@ struct ClosedCardListView: View {
                 }
             }
             .onTapGesture {
-                PersistenceController.shared.addTimestamp(to: question)
-                if selectedQuestion == nil {
-                    selectedQuestion = PersistenceController.shared.selectedQuestion
-                }
-                withAnimation(.linear(duration: 0.3)) {
-                    closedDegree = -90
-                }
-                withAnimation(.linear(duration: 0.3).delay(0.3)){
-                    openDegree = 0
+                persistenceController.addTimestamp(to: question)
+                withAnimation(.easeInOut(duration: 0.5)) {
+                    persistenceController.objectWillChange.send()
                 }
             }
         }
@@ -77,6 +67,6 @@ struct ClosedCardListView: View {
 struct ClosedCardListView_Previews: PreviewProvider {
     static var previews: some View {
         let pc = PersistenceController.preview
-        ClosedCardListView(openDegree: .constant(90), closedDegree: .constant(0), easyQuestions: .constant(pc.easyQuestions), hardQuestions: .constant(pc.hardQuestions), selectedQuestion: .constant(nil))
+        ClosedCardListView().environmentObject(pc)
     }
 }
