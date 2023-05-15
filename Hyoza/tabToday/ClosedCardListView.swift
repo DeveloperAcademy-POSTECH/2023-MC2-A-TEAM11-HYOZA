@@ -42,10 +42,10 @@ struct ClosedCardListView: View {
                     HStack{
                         CapsuleView(content: {
                             Text(question.difficultyString)
-                                .font(.system(size: 17))
+                                .font(.footnote)
                                 .foregroundColor(.textOrange)
                                 .padding([.leading, .trailing], 12)
-                                .padding([.top, .bottom], 8)
+                                .padding([.top, .bottom], 4)
                         }, capsuleColor: .backGroundLightOrange)
                         Spacer()
                     }

@@ -120,30 +120,33 @@ struct QnAView: View {
     
     var contentView: some View {
         VStack(alignment: .leading, spacing: 15) {
-            CapsuleView(content: {
+            HStack{
+                
+                
                 Text(data.difficultyString)
-                    .font(.system(size: 17))
-                    .foregroundColor(.textOrange)
-                    .padding([.leading, .trailing], 12)
-                    .padding([.top, .bottom], 8)
-            }, capsuleColor: .backGroundLightOrange)
+                    .foregroundColor(.orange)
+                    .padding(.horizontal, 12)
+                    .padding(.vertical, 8)
+                    .background(
+                        Rectangle()
+                            .cornerRadius(30)
+                            .foregroundColor(.orange)
+                            .opacity(0.2)
+                    )
+            }
             .padding([.top, .leading], 30)
             Text(data.wrappedQuestion)
-                .font(.title.bold())
-                .foregroundColor(.textBlack)
+                .font(.system(size: 25))
                 .padding(.horizontal, 30)
             Text(data.wrappedTimestamp.fullString)
-                .font(.subheadline.bold())
-                .foregroundColor(.tapBarDarkGray)
                 .padding(.leading, 30)
+                .foregroundColor(.secondary)
             ZStack {
                 RoundedRectangle(cornerRadius: 30)
                     .frame(height: 60)
                     .foregroundColor(.clear)
                 if isEditing {
                     TextField("답변을 입력해 주세요.", text: $textValue, axis: .vertical)
-                        .font(.body)
-                        .foregroundColor(.textLightGray)
                         .onChange(of: textValue) { newValue in
                             isTextFieldEmpty = newValue.isEmpty
                         }
@@ -154,8 +157,6 @@ struct QnAView: View {
                 else {
                     HStack {
                         Text(data.wrappedAnswer.answerDetail)
-                            .font(.body)
-                            .foregroundColor(.textBlack)
                         Spacer()
                     }
                     .padding(.horizontal, 15)
@@ -168,8 +169,6 @@ struct QnAView: View {
                 HStack {
                     Spacer()
                     Text(commentDetail)
-                        .font(.subheadline)
-                        .foregroundColor(.textBlack)
                         .padding(.all)
                         .background(
                             Rectangle()
@@ -248,9 +247,9 @@ struct ImageWrapper: Identifiable {
 
 
 
-
+//
 //struct QnA_Previews: PreviewProvider {
 //    static var previews: some View {
-//        QnAView(data: , isEditing: true, isTextFieldEmpty: true, isCommetFieldEmpty: true)
+////        QnAView(isEditing: true, isTextFieldEmpty: true, isCommetFieldEmpty: true)
 //    }
 //}
