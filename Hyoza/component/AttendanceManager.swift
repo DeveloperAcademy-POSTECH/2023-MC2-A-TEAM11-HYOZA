@@ -14,6 +14,10 @@ class AttendanceManager {
     
     static let notificationAttendanceUpdate = NSNotification.Name("attendance_update")
     
+    static func reset() {
+        UserDefaultsKey.allCases.forEach { UserDefaults.standard.removeObject(forKey: $0.rawValue) }
+    }
+    
     func getFirstAttendedDate() -> Date? {
         return UserDefaults.standard.object(forKey: AttendanceManager.udFirstAttended) as? Date
     }

@@ -43,6 +43,9 @@ struct TodayView: View {
                             .font(.largeTitle)
                             .bold()
                             .foregroundColor(.textColor)
+                            .onTapGesture {
+                                AttendanceManager.reset()
+                            }
                         Spacer()
                         ContinueIconView(text: $continueText, textOpacity: $continueTextOpacity, continuousDayCount: $continuousDayCount)
                             .onTapGesture {
@@ -77,7 +80,7 @@ struct TodayView: View {
             .padding(20)
             .background(Color.backgroundColor.ignoresSafeArea())
             .onAppear() {
-                if selectedQuestion != nil || PersistenceController.shared.todayAnsweredQuestion != nil {
+                if selectedQuestion != nil || PersistenceController.forDemo.todayAnsweredQuestion != nil {
                     closedDegree = -90
                     openDegree = 0
                     isQuestionBoxViewTapped = true

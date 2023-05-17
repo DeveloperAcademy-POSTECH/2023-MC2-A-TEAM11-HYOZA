@@ -19,6 +19,8 @@ class PersistenceController: ObservableObject {
     
     static let shared = PersistenceController()
     
+    static let forDemo = PersistenceController(inMemory: true)
+    
     static var preview: PersistenceController = {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext

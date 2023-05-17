@@ -10,7 +10,7 @@ import SwiftUI
 struct PeriodView: View {
     var cornerRadius: CGFloat
     var periodSelection: PeriodSelection
-    var firstDate = PersistenceController.shared.oldestAnsweredQuestion?.answer?.answerTime ?? Date()
+    var firstDate = PersistenceController.forDemo.oldestAnsweredQuestion?.answer?.answerTime ?? Date()
     private enum K {
         static let startText: LocalizedStringKey = "시작"
         static let endText: LocalizedStringKey = "종료"

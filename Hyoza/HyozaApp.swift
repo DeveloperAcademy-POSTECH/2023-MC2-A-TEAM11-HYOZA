@@ -29,7 +29,7 @@ struct HyozaApp: App {
         }
     }
     
-    let persistenceController = PersistenceController.shared
+    let persistenceController = PersistenceController.forDemo
 
     var body: some Scene {
         WindowGroup {

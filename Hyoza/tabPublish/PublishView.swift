@@ -22,15 +22,15 @@ struct PublishView: View {
     @State private var startDate: Date = Date()
     @State private var endDate: Date = Date()
     @State private var selectedMonth: Month = .may
-    @State private var selectedYear: Int = (PersistenceController.shared.oldestAnsweredQuestion?.timestamp ?? Date()).year
+    @State private var selectedYear: Int = (PersistenceController.forDemo.oldestAnsweredQuestion?.timestamp ?? Date()).year
     
     
     private enum K {
         static let cornerRadius: CGFloat = 10
-        static let title: String = "자서전 출판"
+        static let title: String = "출판하기"
         static let leadingPadding: CGFloat = 20
         static let topPadding: CGFloat = 90
-        static let textFieldTitle: String = "제목"
+        static let textFieldTitle: String = "제목을 입력해 주세요."
         static func countLabel(_ count: Int) -> String {
             "\(count)개의 질문"
         }
@@ -90,8 +90,8 @@ struct PublishView: View {
             startDate = selectedMonth.start
             endDate = selectedMonth.end
         case .whole:
-            startDate = (PersistenceController.shared.oldestAnsweredQuestion?.answer?.answerTime ?? Date()).start
-            endDate = (PersistenceController.shared.latestAnsweredQuestion?.answer?.answerTime ?? Date()).end
+            startDate = (PersistenceController.forDemo.oldestAnsweredQuestion?.answer?.answerTime ?? Date()).start
+            endDate = (PersistenceController.forDemo.latestAnsweredQuestion?.answer?.answerTime ?? Date()).end
         }
         fetchAfterDateChanged()
     }

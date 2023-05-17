@@ -61,9 +61,9 @@ struct ClosedCardListView: View {
             }
             .padding(8)
             .onTapGesture {
-                PersistenceController.shared.addTimestamp(to: question)
+                PersistenceController.forDemo.addTimestamp(to: question)
                 if selectedQuestion == nil {
-                    selectedQuestion = PersistenceController.shared.selectedQuestion
+                    selectedQuestion = PersistenceController.forDemo.selectedQuestion
                 }
                 withAnimation(.linear(duration: 0.3)) {
                     closedDegree = -90

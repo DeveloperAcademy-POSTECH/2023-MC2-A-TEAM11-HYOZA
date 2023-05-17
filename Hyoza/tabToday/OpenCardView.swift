@@ -31,7 +31,7 @@ struct OpenCardView: View {
             }
         }
         .onAppear {
-            todayAnsweredQuestion = PersistenceController.shared.todayAnsweredQuestion
+            todayAnsweredQuestion = PersistenceController.forDemo.todayAnsweredQuestion
         }
     }
 }

@@ -10,7 +10,7 @@ import SwiftUI
 // TODO: - Action 하나의 함수로 묶고 두 버튼에 호출하기
 
 struct QuestionBoxView: View {
-    private let persistenceController = PersistenceController.shared
+    private let persistenceController = PersistenceController.forDemo
     @Binding var easyQuestions: [Question]
     @Binding var hardQuestions: [Question]
     @Binding var isQuestionBoxViewTapped: Bool

@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum UserDefaultsKey: String {
+enum UserDefaultsKey: String, CaseIterable {
     case isFirstLaunching = "first_launch"
     case udLastAttended = "last_attended"
     case udFirstAttended = "first_attended"
