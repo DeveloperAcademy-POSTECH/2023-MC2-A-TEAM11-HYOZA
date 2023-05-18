@@ -42,6 +42,7 @@ struct QnAView: View {
         .background(
             Color.backgroundColor
                 .ignoresSafeArea()
+        .onAppear (perform: UIApplication.shared.hideKeyboard)
         )
         .navigationTitle("오늘의 질문")
         .navigationBarTitleDisplayMode(.inline)
@@ -122,6 +123,7 @@ struct QnAView: View {
                     }
                 }
             })
+       
     }
     
     var contentView: some View {

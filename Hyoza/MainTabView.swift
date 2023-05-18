@@ -46,6 +46,8 @@ struct MainTabView: View {
             selectedQuestion = PersistenceController.shared.selectedQuestion
             
             setAttendance()
+            setTempText()
+            continueText = tempTextStorage
             
             if !isContinueIconAnimating {
                 self.isContinueIconAnimating = true
@@ -59,6 +61,7 @@ struct MainTabView: View {
         }
         .onReceive(publisher) { output in
             setAttendance()
+            setTempText()
         }
     }
     
@@ -71,7 +74,9 @@ struct MainTabView: View {
     
     private func setAttendance() {
         continuousDayCount = AttendanceManager().isAttending ? AttendanceManager().getAttendanceDay() : 0
-        
+    }
+    
+    private func setTempText() {
         switch continuousDayCount {
         case 0:
             tempTextStorage = "작성을 시작해보세요!"
@@ -80,7 +85,6 @@ struct MainTabView: View {
         default:
             tempTextStorage = "무언가 잘못됐어요 :("
         }
-        continueText = tempTextStorage
     }
 }
 

@@ -15,7 +15,6 @@ struct ClosedCardListView: View {
     @Binding var selectedQuestion: Question?
     
     var body: some View {
-        //        VStack {
         VStack(spacing: .zero) {
             Text("오늘의 질문을 골라주세요")
                 .font(.title)
@@ -36,7 +35,6 @@ struct ClosedCardListView: View {
                 .padding(.vertical, 16)
             }
         }
-        //            .padding(20)s
         .rotation3DEffect(Angle(degrees: closedDegree), axis: (0, 1, 0))
     }
     
