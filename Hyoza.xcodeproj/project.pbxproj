@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		665E91D62A14E44B00A71E19 /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665E91D52A14E44B00A71E19 /* UIApplication.swift */; };
 		790B9B692A0FCAF30034D893 /* UserDefaultsKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790B9B682A0FCAF30034D893 /* UserDefaultsKey.swift */; };
 		791029D92A039C58009A5590 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791029D82A039C58009A5590 /* MainTabView.swift */; };
 		791C24572A08EA520009E4EA /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791C24562A08EA520009E4EA /* NotificationManager.swift */; };
@@ -62,6 +63,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		665E91D52A14E44B00A71E19 /* UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
 		790B9B682A0FCAF30034D893 /* UserDefaultsKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKey.swift; sourceTree = "<group>"; };
 		791029D82A039C58009A5590 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		791C24562A08EA520009E4EA /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				794DB9EC2A07E38E00635B58 /* ListView.swift */,
+				665E91D52A14E44B00A71E19 /* UIApplication.swift */,
 			);
 			path = tabList;
 			sourceTree = "<group>";
@@ -425,6 +428,7 @@
 				794EB6AD2A03FF8900DA52B5 /* Question+CoreDataClass.swift in Sources */,
 				98EE907D2A0A750A0042E7B0 /* QuestionCardView.swift in Sources */,
 				B256C8CB2A0A621D00B0C62E /* MonthPickerView.swift in Sources */,
+				665E91D62A14E44B00A71E19 /* UIApplication.swift in Sources */,
 				C9DD7C272A0B790C007C1973 /* ActivityViewControllerWrapper.swift in Sources */,
 				794DB9ED2A07E38E00635B58 /* ListView.swift in Sources */,
 				799E8FBF2A0CBDD7003F78F2 /* PDFGenerator.swift in Sources */,
@@ -558,7 +562,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Hyoza/Preview Content\"";
-				DEVELOPMENT_TEAM = 662HVTXJ55;
+				DEVELOPMENT_TEAM = 6BHXWP5PYW;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "오로지";
@@ -593,7 +597,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Hyoza/Preview Content\"";
-				DEVELOPMENT_TEAM = 662HVTXJ55;
+				DEVELOPMENT_TEAM = 6BHXWP5PYW;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "오로지";

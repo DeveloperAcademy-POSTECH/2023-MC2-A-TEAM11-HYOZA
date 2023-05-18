@@ -62,6 +62,7 @@ struct ListView: View {
             .searchable(text: query,
                         placement: .navigationBarDrawer(displayMode: .automatic),
                         prompt: "검색")
+            .onAppear (perform: UIApplication.shared.hideKeyboard)
             
         }
     }
