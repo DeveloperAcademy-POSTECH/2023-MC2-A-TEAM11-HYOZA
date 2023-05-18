@@ -59,6 +59,7 @@ struct PublishView: View {
                 publishButton
             }
             .padding(.horizontal, K.leadingPadding)
+            .onAppear (perform: UIApplication.shared.hideKeyboard)
             
         }
         .ignoresSafeArea(edges: .top)
