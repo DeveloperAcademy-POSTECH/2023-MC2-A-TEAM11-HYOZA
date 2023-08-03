@@ -25,7 +25,7 @@ struct RoundedCorner: Shape {
 }
 
 struct CardView<Content>: View where Content: View {
-    var backgroundColor: Color = Color("CardPrimaryColor")
+    var backgroundColor: Color = Color.cardPrimaryColor
     var cornerRadius: CGFloat = 8.0
     var shadowColor: Color = Color.black.opacity(0.3)
     var shadowRadius: CGFloat = 4
@@ -43,7 +43,6 @@ struct CardView<Content>: View where Content: View {
                     .shadow(color: shadowColor, radius: shadowRadius, y: shadowRadius == 0 ? 0 : shadowRadius / 2)
             )
     }
-    
 }
 
 
